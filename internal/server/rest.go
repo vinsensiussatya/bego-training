@@ -46,7 +46,7 @@ func (s Server) StartRestAPI() {
 		close(idleConnectionClosed)
 	}()
 
-	srv.Addr = fmt.Sprintf("%s:%d", appConfig.App.Host, os.Getenv("PORT"))
+	srv.Addr = fmt.Sprintf("%s:%s", appConfig.App.Host, os.Getenv("PORT"))
 	srv.Handler = router(s.handler)
 
 	log.Info().Msgf("[API] HTTP serve at %s\n", srv.Addr)
