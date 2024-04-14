@@ -46,14 +46,13 @@ func (s Server) StartRestAPI() {
 		close(idleConnectionClosed)
 	}()
 
-	srv.Addr = fmt.Sprintf("%s:%d", appConfig.App.Host, appConfig.App.Port)
+	srv.Addr = fmt.Sprintf("%s:%d", appConfig.App.Host, os.Getenv("PORT"))
 	srv.Handler = router(s.handler)
 
 	log.Info().Msgf("[API] HTTP serve at %s\n", srv.Addr)
 	log.Info().Msgf("[API Docs] Go to http://%s/swagger/", srv.Addr)
 
-	http.ListenAndServe(os.Getenv("APP_HOST")+":"+os.Getenv("PORT"), nil)
-	log.Info().Msgf("RAILWAY SETTINGS: " + os.Getenv("APP_HOST") + ":" + os.Getenv("PORT"))
+	log.Info().Msgf("RAILWAY SETTINGS: " + appConfig.App.Host + ":" + os.Getenv("PORT"))
 
 	if err := srv.ListenAndServe(); err != http.ErrServerClosed {
 		// Error starting or closing listener:
