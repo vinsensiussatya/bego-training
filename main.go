@@ -15,5 +15,5 @@ func main() {
 
 	util.SetupLog()
 	cmd.Execute()
-	http.ListenAndServe(os.Getenv("APP_PORT"), nil)
+	http.ListenAndServe(os.Getenv("APP_HOST")+":"+os.Getenv("APP_PORT"), nil)
 }
