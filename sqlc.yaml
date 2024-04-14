@@ -1,0 +1,25 @@
+version: "2"
+sql:
+  - engine: "postgresql"
+    queries: "db/query"
+    schema: "db/migration"
+    gen:
+      go:
+        package: "repository"
+        out: "db/sqlc"
+        emit_json_tags: true
+        emit_interface: true
+        emit_empty_slices: true
+        sql_package: "pgx/v5"
+        overrides:
+          - db_type: "uuid"
+            go_type: "github.com/google/uuid.UUID"
+          - column: "*.created_at"
+            go_type: "time.Time"
+          - column: "*.updated_at"
+            go_type: "time.Time"
+          - column: "*.deleted_at"
+            go_type: "database/sql.NullTime"
+          - db_type: "pg_catalog.varchar"
+            go_type: "database/sql.NullString"
+            nullable: true

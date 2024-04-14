@@ -1,0 +1,76 @@
+definitions:
+  response.PingResponse:
+    properties:
+      database:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /health/liveness:
+    get:
+      consumes:
+      - application/json
+      description: check health server
+      parameters:
+      - description: Basic {token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+        "400":
+          description: bad request
+          schema:
+            type: string
+        "404":
+          description: not found
+          schema:
+            type: string
+        "500":
+          description: internal server error
+          schema:
+            type: string
+      summary: Health Check Liveness
+      tags:
+      - health
+  /health/readiness:
+    get:
+      consumes:
+      - application/json
+      description: get health from all dependencies
+      parameters:
+      - description: Basic {token}
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.PingResponse'
+        "400":
+          description: bad request
+          schema:
+            type: string
+        "404":
+          description: not found
+          schema:
+            type: string
+        "500":
+          description: internal server error
+          schema:
+            type: string
+      summary: Health Check Readiness
+      tags:
+      - health
+swagger: "2.0"
