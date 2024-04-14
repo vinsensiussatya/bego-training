@@ -52,8 +52,6 @@ func (s Server) StartRestAPI() {
 	log.Info().Msgf("[API] HTTP serve at %s\n", srv.Addr)
 	log.Info().Msgf("[API Docs] Go to http://%s/swagger/", srv.Addr)
 
-	log.Info().Msgf("RAILWAY SETTINGS: " + appConfig.App.Host + ":" + os.Getenv("PORT"))
-
 	if err := srv.ListenAndServe(); err != http.ErrServerClosed {
 		// Error starting or closing listener:
 		log.Error().Msgf("[API] Fail to listen and serve: %v", err)

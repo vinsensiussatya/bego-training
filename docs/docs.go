@@ -122,6 +122,9 @@ const docTemplate = `{
             "properties": {
                 "database": {
                     "type": "string"
+                },
+                "redis": {
+                    "type": "string"
                 }
             }
         }

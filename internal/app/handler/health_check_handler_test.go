@@ -25,6 +25,7 @@ func TestHealthCheckHandler_Readiness(t *testing.T) {
 			mockFunc: func(mockHcs *mocks.IHealthCheckService) {
 				mockHcs.On("Ping", context.Background()).Return(response.PingResponse{
 					Database: "OK",
+					Redis:    "OK",
 				})
 			},
 			wantStatus: http.StatusOK,
@@ -34,6 +35,7 @@ func TestHealthCheckHandler_Readiness(t *testing.T) {
 			mockFunc: func(mockHcs *mocks.IHealthCheckService) {
 				mockHcs.On("Ping", context.Background()).Return(response.PingResponse{
 					Database: "ERROR",
+					Redis:    "ERROR",
 				})
 			},
 			wantStatus: http.StatusOK,

@@ -111,6 +111,9 @@
             "properties": {
                 "database": {
                     "type": "string"
+                },
+                "redis": {
+                    "type": "string"
                 }
             }
         }

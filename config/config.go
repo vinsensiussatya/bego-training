@@ -3,6 +3,7 @@ package config
 type AppConfig struct {
 	App       App
 	Database  DatabaseConfig
+	Redis     RedisConfig
 	BasicAuth BasicAuthConfig
 }
 
@@ -19,6 +20,10 @@ type DatabaseConfig struct {
 	Port     int
 	DbName   string
 	Timeout  int
+}
+
+type RedisConfig struct {
+	Url string
 }
 
 type BasicAuthConfig struct {

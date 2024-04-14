@@ -80,6 +80,10 @@ func loadConfig() AppConfig {
 		Timeout:  getIntOrPanic("DB_TIMEOUT"),
 	}
 
+	redis := RedisConfig{
+		Url: getStringOrPanic("REDIS_URL"),
+	}
+
 	basicAuth := BasicAuthConfig{
 		Username: getStringOrPanic("BASIC_AUTH_USERNAME"),
 		Password: getStringOrPanic("BASIC_AUTH_PASSWORD"),
@@ -88,6 +92,7 @@ func loadConfig() AppConfig {
 	appConfig := AppConfig{
 		App:       app,
 		Database:  db,
+		Redis:     redis,
 		BasicAuth: basicAuth,
 	}
 

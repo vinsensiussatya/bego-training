@@ -10,9 +10,10 @@ import (
 func initInjections() server.Handler {
 	appConfig := config.GetAppConfig()
 	db := config.InitDb(appConfig.Database)
+	redis := config.InitRedis(appConfig.Redis)
 
 	// wiring services
-	hcs := service.NewHealthCheckService(db)
+	hcs := service.NewHealthCheckService(db, redis)
 
 	// wiring handlers
 	hch := handler.NewHealthCheckHandler(hcs)

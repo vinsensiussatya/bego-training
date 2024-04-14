@@ -3,6 +3,8 @@ definitions:
     properties:
       database:
         type: string
+      redis:
+        type: string
     type: object
 info:
   contact: {}
