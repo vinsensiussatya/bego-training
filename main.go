@@ -1,6 +1,7 @@
 package main
 
 import (
+	"net/http"
 	"os"
 
 	"github.com/vinsensiussatya/bego-training/cmd"
@@ -14,4 +15,5 @@ func main() {
 
 	util.SetupLog()
 	cmd.Execute()
+	http.ListenAndServe(os.Getenv("APP_PORT"), nil)
 }
