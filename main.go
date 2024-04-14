@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 	"os"
 
@@ -15,5 +16,5 @@ func main() {
 
 	util.SetupLog()
 	cmd.Execute()
-	http.ListenAndServe(os.Getenv("APP_HOST")+":"+os.Getenv("APP_PORT"), nil)
+	log.Fatal(http.ListenAndServe(os.Getenv("APP_HOST")+":"+os.Getenv("PORT"), nil))
 }
